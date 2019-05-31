@@ -28,6 +28,6 @@ myButton.onclick = setUserName;
 myImage.onclick = function() {
   setHeading('sqq'+(num++))
   window.webkit && window.webkit.messageHandlers
-                && window.webkit.messageHandlers.onFlowEvent
+                && window.webkit.messageHandlers.jsToNative
                 && window.webkit.messageHandlers.jsToNative.postMessage(data)
 };

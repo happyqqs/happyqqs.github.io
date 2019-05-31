@@ -26,20 +26,22 @@ let myButton = document.querySelector('button');
 myButton.onclick = setUserName;
 
 myImage.onclick = function() {
-  setHeading('sqq'+(num++))
+  var logInfo
   if (window.webkit) {
     if (window.webkit.messageHandlers) {
       if (window.webkit.messageHandlers.jsToNative) {
         window.webkit.messageHandlers.jsToNative.postMessage(data)
-        console.log("post data"+(data))
+        logInfo = "post data"+(data)
       } else {
-        console.log("no jsToNative")
+        logInfo = "no jsToNative"
       }
     } else {
-      console.log("no messageHandlers")
+      logInfo = "no messageHandlers"
     }
   } else {
-    console.log("no webkit")
+    logInfo = "no webkit"
   }
+  setHeading('sqq'+(num++)+logInfo)
+  
   
 };

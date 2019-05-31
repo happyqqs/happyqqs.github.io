@@ -27,21 +27,11 @@ myButton.onclick = setUserName;
 
 myImage.onclick = function() {
   var logInfo
-  if (window.webkit) {
-    if (window.webkit.messageHandlers) {
-      if (window.webkit.messageHandlers.jsToNative) {
-        window.webkit.messageHandlers.jsToNative.postMessage('111111111111')
-        logInfo = "post data"
-      } else {
-        logInfo = "no jsToNative"
-      }
-    } else {
-      logInfo = "no messageHandlers"
-    }
+  if (window.WebViewJavascriptBridge) {
+    window.WebViewJavascriptBridge.callHandler('nativeAlert')
+    logInfo = "post data"
   } else {
-    logInfo = "no webkit"
+    logInfo = "no WebViewJavascriptBridge"
   }
   setHeading('sqq'+(num++)+logInfo)
-  
-  
 };

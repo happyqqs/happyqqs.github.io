@@ -34,4 +34,5 @@ myImage.onclick = function() {
     logInfo = "no WebViewJavascriptBridge"
   }
   setHeading('sqq'+(num++)+logInfo)
+  console.log('sqq'+(num++)+logInfo)
 };

@@ -27,7 +27,19 @@ myButton.onclick = setUserName;
 
 myImage.onclick = function() {
   setHeading('sqq'+(num++))
-  window.webkit && window.webkit.messageHandlers
-                && window.webkit.messageHandlers.jsToNative
-                && window.webkit.messageHandlers.jsToNative.postMessage(data)
+  if (window.webkit) {
+    if (window.webkit.messageHandlers) {
+      if (window.webkit.messageHandlers.jsToNative) {
+        window.webkit.messageHandlers.jsToNative.postMessage(data)
+        console.log("post data"+(data))
+      } else {
+        console.log("no jsToNative")
+      }
+    } else {
+      console.log("no messageHandlers")
+    }
+  } else {
+    console.log("no webkit")
+  }
+  
 };

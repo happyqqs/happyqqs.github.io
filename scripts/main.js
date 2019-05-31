@@ -30,7 +30,7 @@ myImage.onclick = function() {
   if (window.webkit) {
     if (window.webkit.messageHandlers) {
       if (window.webkit.messageHandlers.jsToNative) {
-        window.webkit.messageHandlers.jsToNative.postMessage(data)
+        window.webkit.messageHandlers.jsToNative.postMessage('111111111111')
         logInfo = "post data"+(data)
       } else {
         logInfo = "no jsToNative"

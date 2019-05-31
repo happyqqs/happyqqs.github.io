@@ -1,14 +1,7 @@
 // 图片切换代码
 let myImage = document.querySelector('img');
+var num = 1
 
-myImage.onclick = function() {
-  let mySrc = myImage.getAttribute('src');
-  if(mySrc === 'images/firefox-icon.png') {
-    myImage.setAttribute('src','images/firefox2.png');
-  } else {
-    myImage.setAttribute('src','images/firefox-icon.png');
-  }
-};
 
 // 个性化欢迎信息
 function setHeading(name) {
@@ -31,3 +24,10 @@ if(!storedName) {
 
 let myButton = document.querySelector('button'); 
 myButton.onclick = setUserName;
+
+myImage.onclick = function() {
+  setHeading('sqq'+(num++))
+  window.webkit && window.webkit.messageHandlers
+                && window.webkit.messageHandlers.onFlowEvent
+                && window.webkit.messageHandlers.jsToNative.postMessage(data)
+};

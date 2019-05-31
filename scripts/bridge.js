@@ -1,5 +1,4 @@
-; (function(){
-    if (window.WebViewJavascriptBridge) { return; }
+if (window.WebViewJavascriptBridge) { return; }
 
     if (!window.onerror) {
         window.onerror = function(msg, url, line) {
@@ -88,4 +87,5 @@
     function disableJavscriptAlertBoxSafetyTimeout() {
         dispatchMessagesWithTimeoutSafety = false;
     }    
-})();
+//; (function(){   
+//})();

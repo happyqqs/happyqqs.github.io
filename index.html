@@ -1,188 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-    <style>
-        body,
-        div,
-        video,
-        img {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            font-style: normal;
-            text-decoration: none;
-            border: none;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-font-smoothing: antialiased;
-            width: 100%;
-        }
-        div {
-            margin: -5px 0;
-        }
-        video {
-            object-fit: cover;
-        }
-    </style>
-</head>
-<body>
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?89c740951703b14698ee9f7ad2cf8d4a";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-    <script type="text/javascript">
-        var parseUrl = function () {
-            var param = {};
-            var queryArr = location.search.substring(1).split('&');
-            var queryParts;
-            for (var i = queryArr.length - 1; i >= 0; i--) {
-                queryParts = queryArr[i].split('=');
-                if (queryParts.length >= 2) {
-                    param[queryParts[0]] = queryParts.slice(1).join('=');
-                }
-            }
-            return param;
-        };
+  <head>
+    <meta charset="utf-8">
+    <title>测试页面</title>
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <script src="scripts/main.js" defer></script>
+  </head>
+  <body>
+    <h1>Mozilla 酷毙了！</h1>
+    <img src="images/firefox-icon.png" alt="Firefox 标志：一只盘旋在地球上的火狐">
 
-        // jsbridge init
-        var jsBridge = function (callback) {
-            if (window.WebViewJavascriptBridge) {
-                return callback(WebViewJavascriptBridge);
-            }
-            else {
-                document.addEventListener('WebViewJavascriptBridgeReady', function() {
-                    callback(WebViewJavascriptBridge);
-                }, false);
-            }
-            if (window.WVJBCallbacks) {
-                return window.WVJBCallbacks.push(callback);
-            }
-            window.WVJBCallbacks = [callback];
-            var WVJBIframe = document.createElement('iframe');
-            WVJBIframe.style.display = 'none';
-            WVJBIframe.src = 'https://__bridge_loaded__';
-            document.documentElement.appendChild(WVJBIframe);
-            setTimeout(function() {
-                document.documentElement.removeChild(WVJBIframe);
-            }, 0);
-        }
+    <p>Mozilla 是一个全球社区，这里聚集着来自五湖四海的</p>
 
-        jsBridge(function(bridge) {
-            bridge.init();
-            bridge.callHandler('init', {});
-        });
+    <ul>
+      <li>技术人员</li>
+      <li>思考者</li>
+      <li>建造者</li>
+    </ul>
 
-        var h5BaiduMobState = function(obj) {
-            jsBridge(function(bridge) {
-                bridge.callHandler('h5BaiduMobState', obj);
-            });
-        }
+    <p>我们致力于让 Internet 保持活力，保持畅通，人人皆可贡献，人人皆可创造。我们坚信：开放平台的协作对于人的发展至关重要，也决定着我们共同的未来。</p>
 
-        var appendModule = function (config) {
-            var div = document.createElement('div');
+    <p>为了达成我们共同的理想，我们遵循一系列的价值观和理念，请参阅 <a href="https://www.mozilla.org/zh-CN/about/manifesto/">Mozilla 宣言</a>。</p>
 
-            // 支持div style配置
-            if (config.style) {
-                for (var prop in config.style) {
-                      if (config.style.hasOwnProperty(prop)) {
-                        div.style[prop] = config.style[prop];
-                      } 
-                }
-            }
-
-            // background url
-            if (config.bgUrl) {
-                var img = document.createElement('img');
-                img.src = decodeURIComponent(config.bgUrl);
-                div.appendChild(img);
-            }
-
-            // link url
-            if (config.linkUrl) {
-                div.onclick = function () {
-                    window.location.href = decodeURIComponent(config.linkUrl);
-                    if (config.tongji) {
-                        window._hmt.push(['_trackEvent', config.tongji, 'click', config.tongji]);
-                    }
-                }
-            }
-
-            // video url
-            if (config.videoUrl) {
-                var video = document.createElement('video');
-                video.controls = 'controls';
-                video.src = decodeURIComponent(config.videoUrl);
-                if (config.posterUrl) {
-                    video.poster = decodeURIComponent(config.posterUrl);
-                }
-                if (config.tongji) {
-                    video.addEventListener('playing', function() {
-                        window._hmt.push(['_trackEvent', config.tongji, 'play-video', config.tongji]);
-                    });
-                }
-                div.appendChild(video);
-            }
-            // audio url
-            if (config.audioUrl) {
-                var audio = document.createElement('audio');
-                audio.src = decodeURIComponent(config.audioUrl);
-                div.onclick = function () {
-                    audio.play();
-                    if (config.tongji) {
-                        window._hmt.push(['_trackEvent', config.tongji, 'click-audio', config.tongji]);
-                    }
-                }
-            }
-            
-            document.body.appendChild(div);
-        };
-        var urlParam = parseUrl();
-
-        if (urlParam.title) {
-            document.title = decodeURIComponent(urlParam.title);
-        }
-
-        // check dataSource valid
-        if (urlParam.dataSource && (urlParam.dataSource.match(/bcebos\.com/) || urlParam.dataSource.match(/xiaodu\.baidu\.com/))) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', decodeURIComponent(urlParam.dataSource));
-            xhr.send();
-            xhr.onreadystatechange = function () {
-                if(xhr.readyState === 4 && xhr.status === 200) {
-                    var res = JSON.parse(xhr.responseText);
-                    // 支持body style配置
-                    if (res.style) {
-                        for (var prop in res.style) {
-                              if (res.style.hasOwnProperty(prop)) {
-                                document.body.style[prop] = res.style[prop];
-                              } 
-                        }
-                    }
-                    if (res.data && res.data.length) {
-                        for (var i = 0; i < res.data.length; i++) {
-                            appendModule(res.data[i]);
-                        }
-                    }
-                }
-            }
-        }
-
-        window.onload = function() {
-            setTimeout(h5BaiduMobState({
-                eventId: '运营页打点', 
-                eventName: '运营页打点'
-            }), 50);
-        };
-
-    </script>
-</body>
+    <button>切换用户</button>
+  </body>
 </html>
